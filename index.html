@@ -189,6 +189,45 @@
             text-align: center;
         }
         
+        .user-notice {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .input-form {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .input-form input, .input-form select, .input-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .input-form button {
+            background: #28a745;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .input-form button:hover {
+            background: #218838;
+        }
+        
         @media (max-width: 768px) {
             .dashboard-header h1 {
                 font-size: 2em;
@@ -211,52 +250,33 @@
                 width: 28px;
                 height: 28px;
             }
-            
-            .icon-interests svg {
-                color: #4a90e2;
-            }
-            
-            .icon-skills svg {
-                color: #28a745;
-            }
-            
-            .icon-personality svg {
-                color: #6f42c1;
-            }
-            
-            .icon-values svg {
-                color: #dc3545;
-            }
-            
-            .icon-political svg {
-                color: #d4af37;
-            }
         }
     </style>
 </head>
 <body>
     <div class="assessment-dashboard">
-        <div class="demo-notice">
-            <strong>🎮 Demo Mode Active</strong> - This is sample data for testing purposes
+        <div id="notice-section">
+            <!-- This will be populated by JavaScript -->
         </div>
         
         <div class="dashboard-header">
-            <h1>My Assessment Results</h1>
+            <h1>Assessment Results</h1>
+            <p id="header-subtitle" style="margin-top: 10px; opacity: 0.9;"></p>
         </div>
         
         <div class="progress-section">
             <h3 style="text-align: center; margin-bottom: 20px;">Progress Overview</h3>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">5</div>
+                    <div class="stat-number" id="completed-count">0</div>
                     <div>Completed</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">100%</div>
+                    <div class="stat-number" id="completion-percentage">0%</div>
                     <div>Complete</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">0</div>
+                    <div class="stat-number" id="remaining-count">5</div>
                     <div>Remaining</div>
                 </div>
             </div>
@@ -272,120 +292,397 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="assessment-name">
-                                <div class="assessment-icon icon-skills">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 1 0-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 0 1 3.15 0v1.5m-3.15 0 .075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 0 1 3.15 0V15M6.9 7.575a1.575 1.575 0 1 0-3.15 0v8.175a6.75 6.75 0 0 0 6.75 6.75h2.018a5.25 5.25 0 0 0 3.712-1.538l1.732-1.732a5.25 5.25 0 0 0 1.538-3.712l.003-2.024a.668.668 0 0 1 .198-.471 1.575 1.575 0 1 0-2.228-2.228 3.818 3.818 0 0 0-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0 1 16.35 15m.002 0h-.002" />
-                                    </svg>
-                                </div>
-                                <span>Skills Self-Assessment</span>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="status-badge status-completed">
-                                ✅ Completed
-                            </span>
-                        </td>
-                        <td><strong>Top Skills:</strong> ANALYZE, DESIGN, TEACH, COUNSEL</td>
-                        <td>
-                            <button class="btn btn-primary">Retake</button>
-                            <button class="btn btn-outline">Edit</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="assessment-name">
-                                <div class="assessment-icon icon-values">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-                                    </svg>
-                                </div>
-                                <span>Values Self-Assessment</span>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="status-badge status-completed">
-                                ✅ Completed
-                            </span>
-                        </td>
-                        <td><strong>Top Values:</strong> Autonomy, Challenge, Service</td>
-                        <td>
-                            <button class="btn btn-primary">Retake</button>
-                            <button class="btn btn-outline">Edit</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="assessment-name">
-                                <div class="assessment-icon icon-interests">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                    </svg>
-                                </div>
-                                <span>O*NET Interest Profiler</span>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="status-badge status-completed">
-                                ✅ Completed
-                            </span>
-                        </td>
-                        <td><strong>RIASEC:</strong> R:15, I:32, A:28, S:35</td>
-                        <td>
-                            <button class="btn btn-primary">Retake</button>
-                            <button class="btn btn-outline">Edit</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="assessment-name">
-                                <div class="assessment-icon icon-personality">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.864 4.243A7.5 7.5 0 0 1 19.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 0 0 4.5 10.5a7.464 7.464 0 0 1-1.15 3.993m1.989 3.559A11.209 11.209 0 0 0 8.25 10.5a3.75 3.75 0 1 1 7.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 0 1-3.6 9.75m6.633-4.596a18.666 18.666 0 0 1-2.485 5.33" />
-                                    </svg>
-                                </div>
-                                <span>16 Personalities Test</span>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="status-badge status-completed">
-                                ✅ Completed
-                            </span>
-                        </td>
-                        <td><strong>Type:</strong> ENFP-T</td>
-                        <td>
-                            <button class="btn btn-primary">Retake</button>
-                            <button class="btn btn-outline">Edit</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="assessment-name">
-                                <div class="assessment-icon icon-political">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0-3-3m3 3 3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
-                                    </svg>
-                                </div>
-                                <span>Pew Political Typology</span>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="status-badge status-completed">
-                                ✅ Completed
-                            </span>
-                        </td>
-                        <td><strong>Type:</strong> Progressive Left</td>
-                        <td>
-                            <button class="btn btn-primary">Retake</button>
-                            <button class="btn btn-outline">Edit</button>
-                        </td>
-                    </tr>
+                <tbody id="assessment-table-body">
+                    <!-- Table rows will be populated by JavaScript -->
                 </tbody>
             </table>
         </div>
     </div>
+
+    <script>
+        // Empty data structure - no demo data
+        const emptyData = {
+            skills: null,
+            values: null,
+            interests: null,
+            personality: null,
+            political: null
+        };
+
+        // Assessment definitions
+        const assessments = [
+            {
+                id: 'skills',
+                name: 'Skills Self-Assessment',
+                icon: 'skills',
+                retakeUrl: 'https://alicelayton-boop.github.io/Self-Assessments/Skills-updated-7-23-25.html'
+            },
+            {
+                id: 'values',
+                name: 'Values Self-Assessment',
+                icon: 'values',
+                retakeUrl: 'https://afriendlygame.com/a-friendly-game/put-values-to-work'
+            },
+            {
+                id: 'interests',
+                name: 'O*NET Interest Profiler',
+                icon: 'interests',
+                retakeUrl: 'https://afriendlygame.com/a-friendly-game/identify-your-interests'
+            },
+            {
+                id: 'personality',
+                name: '16 Personalities Test',
+                icon: 'personality',
+                retakeUrl: 'https://afriendlygame.com/a-friendly-game/shareyourstyle'
+            },
+            {
+                id: 'political',
+                name: 'Pew Political Typology',
+                icon: 'political',
+                retakeUrl: 'https://afriendlygame.com/a-friendly-game/theplaceofpolitics'
+            }
+        ];
+
+        // Load user data or return empty data
+        function loadAssessmentData() {
+            const savedData = localStorage.getItem('dashboardData');
+            if (savedData) {
+                try {
+                    const userData = JSON.parse(savedData);
+                    
+                    // Convert user data format to match our structure
+                    const convertedData = { ...emptyData };
+                    
+                    if (userData.skillsAssessment) {
+                        convertedData.skills = userData.skillsAssessment;
+                    }
+                    if (userData.valuesAssessment) {
+                        convertedData.values = userData.valuesAssessment;
+                    }
+                    if (userData.interestsAssessment) {
+                        convertedData.interests = userData.interestsAssessment;
+                    }
+                    if (userData.styleAssessment) {
+                        convertedData.personality = userData.styleAssessment;
+                    }
+                    if (userData.politicsAssessment) {
+                        convertedData.political = userData.politicsAssessment;
+                    }
+                    
+                    return convertedData;
+                } catch (error) {
+                    console.error('Error parsing user data:', error);
+                    return emptyData;
+                }
+            }
+            
+            return emptyData;
+        }
+
+        // Format results for display
+        function formatResults(assessment, data) {
+            if (!data || !data.results) {
+                return '<em>No results available</em>';
+            }
+
+            switch (assessment.id) {
+                case 'skills':
+                    if (data.results.topSkills && data.results.topSkills.length > 0) {
+                        return `<strong>Top Skills:</strong> ${data.results.topSkills.slice(0, 4).map(s => s.skill || s).join(', ')}`;
+                    }
+                    return '<strong>Skills assessment completed</strong>';
+                    
+                case 'values':
+                    if (data.results.topValues && data.results.topValues.length > 0) {
+                        const values = data.results.topValues.slice(0, 3).map(v => v.name || v).join(', ');
+                        return `<strong>Top Values:</strong> ${values}`;
+                    }
+                    return '<strong>Values assessment completed</strong>';
+                    
+                case 'interests':
+                    if (data.results.riasec) {
+                        return `<strong>RIASEC:</strong> ${data.results.riasec}`;
+                    } else if (data.results.primaryInterest) {
+                        return `<strong>Primary:</strong> ${data.results.primaryInterest}, <strong>Secondary:</strong> ${data.results.secondaryInterest || 'N/A'}`;
+                    }
+                    return '<strong>Interest assessment completed</strong>';
+                    
+                case 'personality':
+                    if (data.results.type) {
+                        return `<strong>Type:</strong> ${data.results.type}`;
+                    } else if (data.results.personalityType) {
+                        return `<strong>Type:</strong> ${data.results.personalityType}, <strong>Style:</strong> ${data.results.workStyle || 'N/A'}`;
+                    }
+                    return '<strong>Personality assessment completed</strong>';
+                    
+                case 'political':
+                    if (data.results.type) {
+                        return `<strong>Type:</strong> ${data.results.type}`;
+                    } else if (data.results.politicalOrientation) {
+                        return `<strong>Orientation:</strong> ${data.results.politicalOrientation}, <strong>Engagement:</strong> ${data.results.civicEngagement || 'N/A'}`;
+                    }
+                    return '<strong>Political assessment completed</strong>';
+                    
+                default:
+                    return '<strong>Assessment completed</strong>';
+            }
+        }
+
+        // Get SVG icon for assessment
+        function getAssessmentIcon(iconType) {
+            const icons = {
+                skills: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 1 0-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 0 1 3.15 0v1.5m-3.15 0 .075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 0 1 3.15 0V15M6.9 7.575a1.575 1.575 0 1 0-3.15 0v8.175a6.75 6.75 0 0 0 6.75 6.75h2.018a5.25 5.25 0 0 0 3.712-1.538l1.732-1.732a5.25 5.25 0 0 0 1.538-3.712l.003-2.024a.668.668 0 0 1 .198-.471 1.575 1.575 0 1 0-2.228-2.228 3.818 3.818 0 0 0-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0 1 16.35 15m.002 0h-.002" />
+                </svg>`,
+                values: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                </svg>`,
+                interests: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>`,
+                personality: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.864 4.243A7.5 7.5 0 0 1 19.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 0 0 4.5 10.5a7.464 7.464 0 0 1-1.15 3.993m1.989 3.559A11.209 11.209 0 0 0 8.25 10.5a3.75 3.75 0 1 1 7.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 0 1-3.6 9.75m6.633-4.596a18.666 18.666 0 0 1-2.485 5.33" />
+                </svg>`,
+                political: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0-3-3m3 3 3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+                </svg>`
+            };
+            return icons[iconType] || icons.skills;
+        }
+
+        // Show input form for external assessments
+        function showInputForm(assessmentId) {
+            const row = document.querySelector(`tr[data-assessment="${assessmentId}"]`);
+            const resultsCell = row.children[2];
+            
+            let formHTML = '';
+            
+            switch (assessmentId) {
+                case 'interests':
+                    formHTML = `
+                        <div class="input-form">
+                            <input type="text" id="${assessmentId}-primary" placeholder="Primary Interest" />
+                            <input type="text" id="${assessmentId}-secondary" placeholder="Secondary Interest" />
+                            <input type="text" id="${assessmentId}-riasec" placeholder="RIASEC scores (optional)" />
+                            <button onclick="saveResults('${assessmentId}')">Save Results</button>
+                        </div>
+                    `;
+                    break;
+                case 'personality':
+                    formHTML = `
+                        <div class="input-form">
+                            <input type="text" id="${assessmentId}-type" placeholder="Personality Type (e.g., ENFP-T)" />
+                            <input type="text" id="${assessmentId}-style" placeholder="Work Style (optional)" />
+                            <button onclick="saveResults('${assessmentId}')">Save Results</button>
+                        </div>
+                    `;
+                    break;
+                case 'political':
+                    formHTML = `
+                        <div class="input-form">
+                            <select id="${assessmentId}-orientation">
+                                <option value="">Select Political Orientation...</option>
+                                <option value="Progressive Left">Progressive Left</option>
+                                <option value="Establishment Liberal">Establishment Liberal</option>
+                                <option value="Democratic Mainstays">Democratic Mainstays</option>
+                                <option value="Outsider Left">Outsider Left</option>
+                                <option value="Stressed Sideliners">Stressed Sideliners</option>
+                                <option value="Populist Right">Populist Right</option>
+                                <option value="Ambivalent Right">Ambivalent Right</option>
+                                <option value="Committed Conservatives">Committed Conservatives</option>
+                                <option value="Faith and Flag Conservatives">Faith and Flag Conservatives</option>
+                            </select>
+                            <button onclick="saveResults('${assessmentId}')">Save Results</button>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            resultsCell.innerHTML = formHTML;
+        }
+
+        // Save results from input form
+        function saveResults(assessmentId) {
+            let results = {};
+            
+            switch (assessmentId) {
+                case 'interests':
+                    const primary = document.getElementById(`${assessmentId}-primary`).value;
+                    const secondary = document.getElementById(`${assessmentId}-secondary`).value;
+                    const riasec = document.getElementById(`${assessmentId}-riasec`).value;
+                    
+                    if (!primary) {
+                        alert('Please enter at least your primary interest');
+                        return;
+                    }
+                    
+                    results = {
+                        primaryInterest: primary,
+                        secondaryInterest: secondary,
+                        riasec: riasec || null
+                    };
+                    break;
+                    
+                case 'personality':
+                    const type = document.getElementById(`${assessmentId}-type`).value;
+                    const style = document.getElementById(`${assessmentId}-style`).value;
+                    
+                    if (!type) {
+                        alert('Please enter your personality type');
+                        return;
+                    }
+                    
+                    results = {
+                        type: type,
+                        workStyle: style || null
+                    };
+                    break;
+                    
+                case 'political':
+                    const orientation = document.getElementById(`${assessmentId}-orientation`).value;
+                    
+                    if (!orientation) {
+                        alert('Please select your political orientation');
+                        return;
+                    }
+                    
+                    results = {
+                        type: orientation
+                    };
+                    break;
+            }
+            
+            // Save to localStorage
+            let dashboardData = JSON.parse(localStorage.getItem('dashboardData') || '{}');
+            dashboardData[assessmentId + 'Assessment'] = {
+                results: results,
+                completedDate: new Date().toISOString(),
+                assessmentType: assessmentId,
+                source: 'manual_entry'
+            };
+            localStorage.setItem('dashboardData', JSON.stringify(dashboardData));
+            
+            // Refresh the dashboard
+            updateDashboard();
+        }
+
+        // Update dashboard display
+        function updateDashboard() {
+            const data = loadAssessmentData();
+            const hasAnyUserData = Object.values(data).some(assessment => assessment !== null);
+            
+            // Update notice section and header subtitle
+            const noticeSection = document.getElementById('notice-section');
+            const headerSubtitle = document.getElementById('header-subtitle');
+            
+            if (hasAnyUserData) {
+                noticeSection.innerHTML = `
+                    <div class="user-notice">
+                        <strong>✅ Personal Data Loaded</strong> - Your assessment results are displayed below
+                    </div>
+                `;
+                headerSubtitle.textContent = '';
+            } else {
+                noticeSection.innerHTML = '';
+                headerSubtitle.textContent = 'Take your assessments to see personalized results here';
+            }
+            
+            // Count completed assessments
+            const completed = assessments.filter(assessment => 
+                data[assessment.id] && data[assessment.id].results
+            ).length;
+            const remaining = assessments.length - completed;
+            const percentage = Math.round((completed / assessments.length) * 100);
+            
+            // Update stats
+            document.getElementById('completed-count').textContent = completed;
+            document.getElementById('completion-percentage').textContent = percentage + '%';
+            document.getElementById('remaining-count').textContent = remaining;
+            
+            // Update table
+            const tableBody = document.getElementById('assessment-table-body');
+            tableBody.innerHTML = '';
+            
+            assessments.forEach(assessment => {
+                const assessmentData = data[assessment.id];
+                const isCompleted = assessmentData && assessmentData.results;
+                const isDemo = assessmentData && assessmentData.source === 'demo';
+                
+                const row = document.createElement('tr');
+                row.setAttribute('data-assessment', assessment.id);
+                
+                row.innerHTML = `
+                    <td>
+                        <div class="assessment-name">
+                            <div class="assessment-icon icon-${assessment.icon}">
+                                ${getAssessmentIcon(assessment.icon)}
+                            </div>
+                            <span>${assessment.name}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="status-badge ${isCompleted ? 'status-completed' : 'status-empty'}">
+                            ${isCompleted ? '✅ Completed' : '❌ Not Started'}
+                        </span>
+                    </td>
+                    <td>
+                        ${isCompleted ? formatResults(assessment, assessmentData) : 
+                          (assessment.id === 'skills' || assessment.id === 'values') ? 
+                            '<em>Take assessment to see results</em>' : 
+                            '<button class="btn btn-outline" onclick="showInputForm(\'' + assessment.id + '\')">Enter Results</button>'
+                        }
+                    </td>
+                    <td>
+                        ${isCompleted ? 
+                            `<button class="btn btn-primary" onclick="window.open('${assessment.retakeUrl}', '_blank')">Retake</button>
+                             ${assessment.id !== 'skills' && assessment.id !== 'values' ? 
+                                '<button class="btn btn-outline" onclick="showInputForm(\'' + assessment.id + '\')">Edit</button>' : ''
+                             }` :
+                            `<button class="btn btn-primary" onclick="window.open('${assessment.retakeUrl}', '_blank')">Take Assessment</button>`
+                        }
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Export functions for assessments to call
+        window.saveSkillsResults = function(skillsData) {
+            let dashboardData = JSON.parse(localStorage.getItem('dashboardData') || '{}');
+            dashboardData.skillsAssessment = {
+                results: skillsData,
+                completedDate: new Date().toISOString(),
+                assessmentType: 'skills',
+                source: 'internal'
+            };
+            localStorage.setItem('dashboardData', JSON.stringify(dashboardData));
+            updateDashboard();
+        };
+
+        window.saveValuesResults = function(valuesData) {
+            let dashboardData = JSON.parse(localStorage.getItem('dashboardData') || '{}');
+            dashboardData.valuesAssessment = {
+                results: valuesData,
+                completedDate: new Date().toISOString(),
+                assessmentType: 'values',
+                source: 'internal'
+            };
+            localStorage.setItem('dashboardData', JSON.stringify(dashboardData));
+            updateDashboard();
+        };
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDashboard();
+        });
+
+        // Listen for storage changes
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'dashboardData') {
+                updateDashboard();
+            }
+        });
+    </script>
 </body>
 </html>
