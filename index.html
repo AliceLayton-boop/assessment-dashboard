@@ -360,7 +360,7 @@
             }
         ];
 
-        // Load user data or return empty data
+        // Load user data or return empty data - CORRECTED KEY NAMES
         function loadAssessmentData() {
             const savedData = localStorage.getItem('dashboardData');
             if (savedData) {
@@ -376,15 +376,18 @@
                     if (userData.valuesAssessment) {
                         convertedData.values = userData.valuesAssessment;
                     }
+                    // CORRECTED: interestAssessment (no 's')
                     if (userData.interestAssessment) {
                         convertedData.interests = userData.interestAssessment;
                     }
+                    // CORRECTED: personalityAssessment (not styleAssessment)
                     if (userData.personalityAssessment) {
                         convertedData.personality = userData.personalityAssessment;
                     }
                     if (userData.gamingCharacterAssessment) {
                         convertedData.gamingcharacter = userData.gamingCharacterAssessment;
                     }
+                    // CORRECTED: politicalAssessment (not politicsAssessment)
                     if (userData.politicalAssessment) {
                         convertedData.political = userData.politicalAssessment;
                     }
@@ -575,7 +578,7 @@
                     break;
             }
             
-            // Save to localStorage
+            // Save to localStorage - CORRECTED KEY NAMES
             let dashboardData = JSON.parse(localStorage.getItem('dashboardData') || '{}');
             dashboardData[assessmentId + 'Assessment'] = {
                 results: results,
